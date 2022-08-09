@@ -11,14 +11,15 @@ namespace CGBase_NS {
 		A = 1.0; B = 0.0;
 		EntType = EntityType::VERTEX2D;
 	};
-// —оздание вершины по двум координатам
+// Create vertex by two coordinates
 	CGVertex2d::CGVertex2d(double xx, double yy) {
 
 		x = xx; y = yy;
 		A = 1.0; B = 0.0;
 		EntType = EntityType::VERTEX2D;			
 	}
-// —оздание вершины по двум координатам и компонентам единичного вектора
+// Create vertex by two coordinates and unit vector components
+
 	CGVertex2d::CGVertex2d(double xx, double yy, double a, double b) {
 		
 		x = xx; y = yy;
@@ -33,20 +34,16 @@ namespace CGBase_NS {
 		}
 		EntType = EntityType::VERTEX2D;	
 	}
-//  онструктор копировани€
+// Copy constructor
 	CGVertex2d::CGVertex2d(const CGVertex2d& vv) {
 
 		this->x = vv.x; 
 		this->y = vv.y;
 		this->A = vv.A; 
 		this->B = vv.B;
-		this->Bulge = vv.Bulge;
-		EntType = EntityType::VERTEX2D;		
-		this->index = vv.index;		
-		this->knucle_angle = vv.knucle_angle;		
-		this->t = vv.t;		
+		EntType = EntityType::VERTEX2D;				
 	}	
-// —оздаетс€ вершина с началом в v1 и напр. в v2
+//Create vertex on v1 to v2 direction
 	CGVertex2d::CGVertex2d(CGVertex2d *  p1, CGVertex2d *  p2) {
 	
 		x = p1->x;
@@ -62,7 +59,7 @@ namespace CGBase_NS {
 		else { A = a; B = b; }
 		EntType = EntityType::VERTEX2D;	
 	}
-//рассто€ние между точками
+//distance between vertices
 	double
 		CGVertex2d::Distance(CGVertex2d* V2) {
 

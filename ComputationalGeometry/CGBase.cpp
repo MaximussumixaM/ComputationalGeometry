@@ -5,13 +5,13 @@ namespace CGBase_NS {
 
 	unsigned long long CGBase::EntCounter;
 
-						// ===  онструкторы === //
+						// === Constructors === //
 	CGBase::CGBase() {
 		
 		this->EntType = EntityType::BASE;			
 		++EntCounter;			
 	}
-//конструктор копировани€
+//Copy Constructor
 	CGBase::CGBase(const CGBase& bg) {		
 				
 		EntType = bg.EntType;			
