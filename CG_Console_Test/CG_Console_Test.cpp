@@ -12,7 +12,16 @@ int main()
 {
     CGVertex2d* v1 = new CGVertex2d(2, 4);
 
+    CGVertex2d_V* v_v = new CGVertex2d_V();
+    CGVertex2d_V* v_v2;
+
+    v_v->push_back(v1);
+    v_v2 = new CGVertex2d_V(*v_v);
+ 
+
     delete v1;
+    delete v_v;
+    delete v_v2;
 
     return 0;
 }

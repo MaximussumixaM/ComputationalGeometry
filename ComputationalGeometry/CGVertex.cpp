@@ -3,7 +3,7 @@
 #include <math.h>
 
 namespace CGBase_NS {
-							// === Конструкторы === //
+							// === Constructors === //
 			
 	CGVertex2d::CGVertex2d() {
 

@@ -2,8 +2,13 @@
 #define CGVERTEX_H
 
 #include "CGBase.h"
+#include "Containers.h"
+
+using namespace Containers_NS;
 
 namespace CGBase_NS {
+
+								// === CGVertex2d === //
 	class CGVertex2d : CGBase
 	{   
 	public:
@@ -27,6 +32,7 @@ namespace CGBase_NS {
 			this->x = v.x; this->y = v.y;
 			this->A = v.A; this->B = v.B;
 
+
 			return *this;
 		}
 		CGVertex2d(CGVertex2d *  v1, CGVertex2d *  v2);//Create vertex on v1 to v2 direction
@@ -43,5 +49,35 @@ namespace CGBase_NS {
 
 		double Distance(CGVertex2d*);//distance between vertices	
 	};	
+
+									// === CGVertex2d_V === //
+	
+	
+	class CGVertex2d_V : public CGList<CGVertex2d*> { // Контейнер для хранения вертексов
+	
+	public:
+		CGVertex2d_V() {};
+		CGVertex2d_V(CGVertex2d_V* v_v) {	// Конструктор копирования
+
+			//if (v_v == nullptr || v_v->size() == 0)
+				//return;
+
+			for (auto i = v_v->begin(); i != v_v->end(); i++) {			
+				this->push_back(*i);
+			}
+			
+
+		};
+
+		~CGVertex2d_V() {};
+
+		CGVertex2d_V& operator=  (CGVertex2d_V* v_v) {    //Assignment operator	
+
+			for (auto i = v_v->begin(); i != v_v->end(); i++) {
+				this->push_back(*i);
+			}
+			return *this;
+		}
+	};	
 }
-#endif
+#endif //CGVERTEX_H

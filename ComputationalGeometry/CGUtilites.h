@@ -2,28 +2,49 @@
 #define CGUTILITES_H
 
 #include <string>
+#include "Containers.h"
 
-//------ Точности по умолчанию ----------------------------------------------
-#define EPSgeo_default 0.10                    // Точность геометрических построений
-#define EPSmath_default 0.0000001              // Точность математических вычислений
-#define MaxDoubleValue 99999999999.0		   // максимальное для дабла (а то Double::MaxValue не катит для разных фреймворков)
-#define MinDoubleValue -99999999999.0		   // минимальное для дабла (а то Double::MinValue не катит для разных фреймворков)
+using namespace Containers_NS;
+
+							  //=== Default accuracies ===//
+#define EPSgeo_default 0.10                    // geometry accuracy
+#define EPSmath_default 0.0000001              // math accuracy
+#define MaxDoubleValue 99999999999.0		   // Double::MaxValue
+#define MinDoubleValue -99999999999.0		   // Double::MinValue
 
 extern double EPSgeo, EPSmath;
 
 namespace CGBase_NS {
 
+								// === CGUtilites === //
     class CGUtilites
     {
-    public:
-		inline static const std::string path_object_log = "C:/Users/anuro/source/repos/ComputationalGeometry/ComputationalGeometry/Objects.txt";
+    public:		
 		
 		static constexpr double EPSgeo = EPSgeo_default;      // Точность геометрических построений
         static constexpr double EPSmath = EPSmath_default;    // Точность математических вычислений	
     	
 	};	
+
+								// === Double_V === //			
+	// Double List - for future math structures
+	class Double_V : public CGList<double> {
+	public:
+
+		Double_V() {};
+
+		Double_V(Double_V* vv) {	// copy constructor
+			if (vv == nullptr || vv->size() == 0)
+				return;
+
+			for (auto i = vv->begin(); i != vv->end(); i++) {
+				this->push_back(*i);
+			}
+		};
+		~Double_V() {};
+	};
 }
 
-#endif
+#endif//CGUTILITES_H
 
     
