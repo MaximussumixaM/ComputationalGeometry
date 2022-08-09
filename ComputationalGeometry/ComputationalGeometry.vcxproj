@@ -158,6 +158,7 @@
     <ClInclude Include="CGBase.h" />
     <ClInclude Include="CGUtilites.h" />
     <ClInclude Include="CGVertex.h" />
+    <ClInclude Include="Containers.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
