@@ -4,6 +4,7 @@
 namespace CGBase_NS {
 							// === Constructors === //
 	CGCurve2d::CGCurve2d() {
+
 		Curve.clear();
 		EntType = EntityType::POLYLINE;	
 	}
@@ -20,13 +21,21 @@ namespace CGBase_NS {
 	}	
 	
 	CGCurve2d::CGCurve2d(const CGCurve2d& cur) {
-		//Curve->clear();
 	
+		Curve.clear();
 		for (auto i = Curve.begin(); i != Curve.end(); i++) {	
 			this->Add(*i);
 		}
-		EntType = EntityType::POLYLINE;
+		EntType = EntityType::POLYLINE;		
+	}
+
+	CGCurve2d::CGCurve2d(CGVertex2d_V* v_cur) {
 		
+		Curve.clear();
+		for (auto i = v_cur->begin(); i != v_cur->end(); i++) {
+			this->Add(*i);
+		}
+		EntType = EntityType::POLYLINE;
 	}
 					//===Add Vertex to the end of curve===//	
 	void
@@ -34,7 +43,6 @@ namespace CGBase_NS {
 		
 			Curve.push_back(v);	
 	}
-
 	
 						//===Get vertex by index===//
 	CGVertex2d*

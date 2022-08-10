@@ -19,12 +19,10 @@ namespace CGBase_NS {
 								// === CGUtilites === //
     class CGUtilites
     {
-    public:		
-		
+    public:				
 		static constexpr double EPSgeo = EPSgeo_default;      // “очность геометрических построений
         static constexpr double EPSmath = EPSmath_default;    // “очность математических вычислений	
-    	
-	};	
+    };	
 
 								// === Double_V === //			
 	// Double List - for future math structures

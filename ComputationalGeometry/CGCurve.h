@@ -28,6 +28,7 @@ namespace CGBase_NS {
 
 		unsigned int Size() { return Curve.size(); }//Number of vertecies
 		bool isEmpty();//Line is empty
+		void Clear() { this->Curve.clear();}
 
 		void Add(CGVertex2d* const& v);//Add Vertex to the end of curve	
 
