@@ -11,17 +11,24 @@ namespace CGBase_NS {
 		A = 1.0; B = 0.0;
 		EntType = EntityType::VERTEX2D;
 	};
-// Create vertex by two coordinates
+
+	CGVertex2d::CGVertex2d(const CGVertex2d& vv) {
+
+		this->x = vv.x;
+		this->y = vv.y;
+		this->A = vv.A;
+		this->B = vv.B;
+		EntType = EntityType::VERTEX2D;
+	}
+					//=== Create vertex by two coordinates===//
 	CGVertex2d::CGVertex2d(double xx, double yy) {
 
 		x = xx; y = yy;
 		A = 1.0; B = 0.0;
 		EntType = EntityType::VERTEX2D;			
 	}
-// Create vertex by two coordinates and unit vector components
-
+						//=== Create vertex by two coordinates and unit vector components===//
 	CGVertex2d::CGVertex2d(double xx, double yy, double a, double b) {
-		
 		x = xx; y = yy;
 		double s = sqrt(a * a + b * b);
 		if (s != 0.0) {
@@ -33,17 +40,9 @@ namespace CGBase_NS {
 			A = a; B = b;
 		}
 		EntType = EntityType::VERTEX2D;	
-	}
-// Copy constructor
-	CGVertex2d::CGVertex2d(const CGVertex2d& vv) {
-
-		this->x = vv.x; 
-		this->y = vv.y;
-		this->A = vv.A; 
-		this->B = vv.B;
-		EntType = EntityType::VERTEX2D;				
-	}	
-//Create vertex on v1 to v2 direction
+	}								
+	
+						//==Create vertex on v1 to v2 direction===//
 	CGVertex2d::CGVertex2d(CGVertex2d *  p1, CGVertex2d *  p2) {
 	
 		x = p1->x;
@@ -59,7 +58,7 @@ namespace CGBase_NS {
 		else { A = a; B = b; }
 		EntType = EntityType::VERTEX2D;	
 	}
-//distance between vertices
+							//===Distance between vertices===//
 	double
 		CGVertex2d::Distance(CGVertex2d* V2) {
 

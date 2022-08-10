@@ -11,7 +11,7 @@ namespace CGBase_NS {
 		this->EntType = EntityType::BASE;			
 		++EntCounter;			
 	}
-//Copy Constructor
+
 	CGBase::CGBase(const CGBase& bg) {		
 				
 		EntType = bg.EntType;			

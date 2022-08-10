@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CGBase.h" />
+    <ClInclude Include="CGCurve.h" />
     <ClInclude Include="CGUtilites.h" />
     <ClInclude Include="CGVertex.h" />
     <ClInclude Include="Containers.h" />
@@ -164,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CGBase.cpp" />
+    <ClCompile Include="CGCurve.cpp" />
     <ClCompile Include="CGUtilites.cpp" />
     <ClCompile Include="CGVertex.cpp" />
     <ClCompile Include="dllmain.cpp" />

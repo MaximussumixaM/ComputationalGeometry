@@ -27,11 +27,10 @@ namespace CGBase_NS {
 
 		~CGVertex2d() {};
 
-		CGVertex2d& operator=  (const CGVertex2d& v) {    //Assignment operator	
+		CGVertex2d& operator=  (const CGVertex2d& v) {//Assignment operator	
 
 			this->x = v.x; this->y = v.y;
 			this->A = v.A; this->B = v.B;
-
 
 			return *this;
 		}
@@ -50,8 +49,7 @@ namespace CGBase_NS {
 		double Distance(CGVertex2d*);//distance between vertices	
 	};	
 
-									// === CGVertex2d_V === //
-	
+									// === CGVertex2d_V === //	
 	
 	class CGVertex2d_V : public CGList<CGVertex2d*> { // Контейнер для хранения вертексов
 	
@@ -71,7 +69,7 @@ namespace CGBase_NS {
 
 		~CGVertex2d_V() {};
 
-		CGVertex2d_V& operator=  (CGVertex2d_V* v_v) {    //Assignment operator	
+		CGVertex2d_V& operator=  (CGVertex2d_V* v_v) {//Assignment operator	
 
 			for (auto i = v_v->begin(); i != v_v->end(); i++) {
 				this->push_back(*i);

@@ -33,6 +33,9 @@
     <ClInclude Include="Containers.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="CGCurve.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -48,6 +51,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="CGUtilites.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CGCurve.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
