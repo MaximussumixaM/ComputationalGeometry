@@ -11,11 +11,11 @@ namespace CGBase_NS {
 								// === CGVertex2d === //
 	class CGVertex2d : CGBase
 	{   
-	public:
+	private:
 		double x, y;                     // Vertex coordinates
 		double A, B;                     // Unit vectors components		
 		bool VectorDefined;				// is Vector defined on vertex
-	
+	public:
 							// === Constructors ===//
 		CGVertex2d();
 
@@ -43,8 +43,10 @@ namespace CGBase_NS {
 		void SetA(double a) { A = a; }// Set A component
 		void SetB(double b) { B = b; }// Set B component	
 
-		double GetX() { return x; };// Get x coordinate
-		double GetY() { return y; };// Get y coordinate		
+		double  GetX() const { return x; };// Get x coordinate
+		double  GetY() const { return y; };// Get y coordinate		
+		double  GetA() const { return A; };// Get A component
+		double  GetB() const { return B; };// Get B component	
 
 		double Distance(CGVertex2d*);//distance between vertices	
 	};	
@@ -57,8 +59,8 @@ namespace CGBase_NS {
 		CGVertex2d_V() {};
 		CGVertex2d_V(CGVertex2d_V* v_v) {	// Конструктор копирования
 
-			//if (v_v == nullptr || v_v->size() == 0)
-				//return;
+			if (v_v == nullptr || v_v->size() == 0)
+				return;
 
 			for (auto i = v_v->begin(); i != v_v->end(); i++) {			
 				this->push_back(*i);

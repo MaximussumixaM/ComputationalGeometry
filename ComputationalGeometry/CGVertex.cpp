@@ -14,10 +14,10 @@ namespace CGBase_NS {
 
 	CGVertex2d::CGVertex2d(const CGVertex2d& vv) {
 
-		this->x = vv.x;
-		this->y = vv.y;
-		this->A = vv.A;
-		this->B = vv.B;
+		this->x = vv.GetX();
+		this->y = vv.GetY();
+		this->A = vv.GetA();
+		this->B = vv.GetB();
 		EntType = EntityType::VERTEX2D;
 	}
 					//=== Create vertex by two coordinates===//
