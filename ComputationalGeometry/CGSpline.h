@@ -13,16 +13,20 @@ namespace CGBase_NS {
 		CGSpline2d(const CGSpline2d&);		  // Copy constructor
 		CGSpline2d(CGCurve2d*);
 		~CGSpline2d() { 
-			delete KnotVector;
-			delete HordaVector;
-			delete ControlPoints;
-			delete FitPoints;		
+			//delete KnotVector;
+			//delete HordaVector;
+			//delete ControlPoints;
+			//delete FitPoints;		
 		} ;
 
-		Double_V* KnotVector;		
-		Double_V* HordaVector;
-		CGVertex2d_V* ControlPoints;
-		CGVertex2d_V* FitPoints;
+		//Double_V* KnotVector;		
+		//Double_V* HordaVector;
+		std::unique_ptr<Double_V> KnotVector;
+		std::unique_ptr<Double_V> HordaVector;
+		std::unique_ptr<CGVertex2d_V> ControlPoints;
+		std::unique_ptr<CGVertex2d_V> FitPoints;
+		//CGVertex2d_V* ControlPoints;
+		//CGVertex2d_V* FitPoints;
 		CGVector2d NormalVector;// Normal vector to spline2d plane
 		CGVector2d StartTangent;//Tangent at start of the spline
 		CGVector2d EndTangent;//Tangent at the end of the spline

@@ -147,6 +147,11 @@
   <ItemGroup>
     <ClCompile Include="CG_Console_Test.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComputationalGeometry\ComputationalGeometry.vcxproj">
+      <Project>{bea139a0-c4b8-4460-9699-cda2af2d48ff}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

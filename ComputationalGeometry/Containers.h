@@ -1,6 +1,8 @@
 #ifndef CGCONTAINERS_H
 #define CGCONTAINERS_H
 
+//Поправить в соответствии
+//https://codereview.stackexchange.com/questions/159592/vector-with-move-constructor-and-move-assignment-operator
 namespace Containers_NS {
 
     template <class T>
@@ -8,6 +10,7 @@ namespace Containers_NS {
     {
     public:
         typedef T* iterator;
+
         CGList();
         CGList(unsigned int size);
         CGList(unsigned int size, const T& initial);

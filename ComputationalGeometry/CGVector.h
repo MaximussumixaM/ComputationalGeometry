@@ -12,7 +12,7 @@ namespace CGBase_NS {
 		double A; //Components of unit vector
 		double B;
 	public:
-		CGVector2d() {this->EntType = EntityType::VECTOR2D; }
+		CGVector2d() { A = 1.0; B = 0.0; this->EntType = EntityType::VECTOR2D; }
 	
 		CGVector2d(CGVertex2d const & , CGVertex2d const &);
 	
