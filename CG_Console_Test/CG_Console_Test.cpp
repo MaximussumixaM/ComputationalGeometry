@@ -44,7 +44,7 @@ int main()
 
     v_v->push_back(*v1);
     CGCurve2d* cur = new CGCurve2d();
-    CGCurve2d* cur1 = new CGCurve2d(v_v);
+    CGCurve2d* cur1 = new CGCurve2d(*v_v);
     cur->Add(*v2);
 
     CGVertex2d_V* v_v2 = new CGVertex2d_V();
@@ -52,7 +52,7 @@ int main()
         v_v2->push_back(*i);
     }
     //CGCurve2d* cur2 = new CGCurve2d(*cur);
-    CGCurve2d cur5 = CGCurve2d(v_v);
+    CGCurve2d cur5 = CGCurve2d(*v_v);
     CGCurve2d cur2 = std::move(cur5);
    // CGVertex2d_V* v_v4 = new CGVertex2d_V(*cur2->Curve);
     CGVertex2d_V* v_v3 = new CGVertex2d_V(*cur->Curve);
@@ -69,12 +69,12 @@ int main()
 
  
    
-    /*CGSpline2d* spl = new CGSpline2d();
+    CGSpline2d* spl = new CGSpline2d();
     spl->EndTangent = CGVector2d(2,3);
     CGVertex2d_V ControlPoints = CGVertex2d_V(*spl->ControlPoints);
     CGVector2d EndTangent = spl->EndTangent;
 
-    auto spl_p = std::make_unique<CGSpline2d>();    
+    auto spl_p = std::make_shared<CGSpline2d>();    
    
     spl_p->EndTangent = CGVector2d(2, 3);
     CGVertex2d_V ControlPoints2 = CGVertex2d_V(*spl_p->ControlPoints);
@@ -87,6 +87,6 @@ int main()
 
     delete spl;
     //delete ControlPoints;
-    //delete v_v;*/
+    //delete v_v;
     return 0;
 }

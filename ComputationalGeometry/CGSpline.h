@@ -21,10 +21,10 @@ namespace CGBase_NS {
 
 		//Double_V* KnotVector;		
 		//Double_V* HordaVector;
-		std::unique_ptr<Double_V> KnotVector;
-		std::unique_ptr<Double_V> HordaVector;
-		std::unique_ptr<CGVertex2d_V> ControlPoints;
-		std::unique_ptr<CGVertex2d_V> FitPoints;
+		std::shared_ptr<Double_V> KnotVector;
+		std::shared_ptr<Double_V> HordaVector;
+		std::shared_ptr<CGVertex2d_V> ControlPoints;
+		std::shared_ptr<CGVertex2d_V> FitPoints;
 		//CGVertex2d_V* ControlPoints;
 		//CGVertex2d_V* FitPoints;
 		CGVector2d NormalVector;// Normal vector to spline2d plane

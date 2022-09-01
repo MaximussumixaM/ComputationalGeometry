@@ -13,9 +13,9 @@ namespace CGBase_NS {
 
 		//this->KnotVector->clear();
 		//KnotVector = new Double_V();
-		KnotVector = std::make_unique<Double_V>();
-		ControlPoints = std::make_unique<CGVertex2d_V>();
-		FitPoints = std::make_unique<CGVertex2d_V>();
+		KnotVector = std::make_shared<Double_V>();
+		ControlPoints = std::make_shared<CGVertex2d_V>();
+		FitPoints = std::make_shared<CGVertex2d_V>();
 		//ControlPoints = new CGVertex2d_V();
 		//FitPoints = new CGVertex2d_V();
 		degree = 3;		// default
@@ -29,9 +29,9 @@ namespace CGBase_NS {
 	
 		//this->KnotVector->clear();
 		//KnotVector = new Double_V();
-		KnotVector = std::make_unique<Double_V>();
-		ControlPoints = std::make_unique<CGVertex2d_V>();
-		FitPoints = std::make_unique<CGVertex2d_V>();
+		KnotVector = std::make_shared<Double_V>();
+		ControlPoints = std::make_shared<CGVertex2d_V>();
+		FitPoints = std::make_shared<CGVertex2d_V>();
 		//ControlPoints = new CGVertex2d_V();
 		//FitPoints = new CGVertex2d_V();
 		this->HordaVector->clear();

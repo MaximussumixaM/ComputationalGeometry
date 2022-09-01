@@ -5,26 +5,21 @@ namespace CGBase_NS {
 							// === Constructors === //
 	CGCurve2d::CGCurve2d() {
 
-		Curve = std::make_unique<CGVertex2d_V>();
+		Curve = std::make_shared<CGVertex2d_V>();
 		EntType = EntityType::POLYLINE;	
 	}
 
 	CGCurve2d::CGCurve2d(int n) {
 
-		Curve = std::make_unique<CGVertex2d_V>();
+		Curve = std::make_shared<CGVertex2d_V>();
 		Curve->resize(n);
-		//for (auto i = Curve->begin(); i != Curve->end(); i++) {
-		//	this->Add(*i);
-		//}
-		//auto i = Curve->begin();
-		//auto j = Curve->end();
-		//this->Add(*i);
-	
+			
 		EntType = EntityType::POLYLINE;		
 	}	
 	
 	CGCurve2d::CGCurve2d(const CGCurve2d& cur) {
 	
+		Curve = cur.Curve;
 		//Curve->clear();
 		//for (auto i = Curve->begin(); i != Curve->end(); i++) {
 			//this->Add(*i);
@@ -32,14 +27,11 @@ namespace CGBase_NS {
 		EntType = EntityType::POLYLINE;		
 	}	
 
-	CGCurve2d::CGCurve2d(CGVertex2d_V* v_cur) {
+	CGCurve2d::CGCurve2d(const CGVertex2d_V& v_cur) {
 		
-		//Curve->clear();
-		//Curve = new CGVertex2d_V();
-		Curve = std::make_unique<CGVertex2d_V>();
-		//for (auto i = v_cur->begin(); i != v_cur->end(); i++) {
-			//this->Add(*i);
-		//}
+		
+		Curve = std::make_shared<CGVertex2d_V>();
+		
 		EntType = EntityType::POLYLINE;
 	}
 					//===Add Vertex to the end of curve===//	

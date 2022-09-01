@@ -11,13 +11,13 @@ namespace CGBase_NS {
 	{   
 	public:
 		//CGVertex2d_V* Curve;
-		std::unique_ptr<CGVertex2d_V> Curve;
+		std::shared_ptr<CGVertex2d_V> Curve;
 	
 
 		CGCurve2d();//Default constructor
 		CGCurve2d(int);                            
 		CGCurve2d(const CGCurve2d&);//Copy constructor
-		CGCurve2d(CGVertex2d_V*);   
+		CGCurve2d(const CGVertex2d_V&);
 		CGCurve2d& operator=  (const CGCurve2d& cur) {//Assignment operator	
 
 			for (auto i = cur.Curve->begin(); i != cur.Curve->end(); i++) {
