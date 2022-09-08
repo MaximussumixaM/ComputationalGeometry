@@ -27,6 +27,24 @@ namespace CGBase_NS {
 			return *this;
 		}
 
+		CGVector2d(CGVector2d&& other) noexcept // Оператор присваивания перемещением (move assignment)
+		{
+			swap(*this, other);
+		}
+
+		CGVector2d& operator=(CGVector2d&& other) noexcept // Оператор присваивания перемещением (move assignment)
+		{
+			swap(*this, other);
+			return *this;
+		}
+
+		friend void swap(CGVector2d& l, CGVector2d& r)
+		{
+			using std::swap;
+			swap(l.A, r.A);
+			swap(l.B, r.B);			
+		}
+
 		~CGVector2d() {};
 
 		double GetA() const { return A; };      // Get A Component

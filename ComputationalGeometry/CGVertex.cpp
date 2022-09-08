@@ -2,65 +2,8 @@
 #include "CGVertex.h"
 #include <math.h>
 
-namespace CGBase_NS {
-							// === Constructors === //
-			
-	CGVertex2d::CGVertex2d() {
-
-		x = y = 0.0;
-		A = 1.0; B = 0.0;
-		VectorDefined = false;
-		EntType = EntityType::VERTEX2D;
-	};
-
-	CGVertex2d::CGVertex2d(const CGVertex2d& vv) {
-
-		this->x = vv.GetX();
-		this->y = vv.GetY();
-		this->A = vv.GetA();
-		this->B = vv.GetB();
-		EntType = EntityType::VERTEX2D;
-	}
-					//=== Create vertex by two coordinates===//
-	CGVertex2d::CGVertex2d(double xx, double yy) {
-
-		x = xx; y = yy;
-		A = 1.0; B = 0.0;
-		VectorDefined = false;
-		EntType = EntityType::VERTEX2D;			
-	}
-						//=== Create vertex by two coordinates and unit vector components===//
-	CGVertex2d::CGVertex2d(double xx, double yy, double a, double b) {
-		x = xx; y = yy;
-		double s = sqrt(a * a + b * b);
-		if (s != 0.0) {
-			A = a / s;
-			B = b / s;
-		}
-		else
-		{
-			A = a; B = b;
-		}
-		VectorDefined = true;
-		EntType = EntityType::VERTEX2D;	
-	}								
-	
-						//==Create vertex on v1 to v2 direction===//
-	CGVertex2d::CGVertex2d(CGVertex2d *  p1, CGVertex2d *  p2) {
-	
-		x = p1->x;
-		y = p1->y;  A = 1.0; B = 0.0;
-		double a = p2->GetX() - p1->GetX();
-		double b = p2->GetY() - p1->GetY();
-		double s = sqrt(a * a + b * b);
-		if (s > CGUtilites::EPSmath)
-		{
-			A = a / s;
-			B = b / s;
-		}
-		else { A = a; B = b; }
-		EntType = EntityType::VERTEX2D;	
-	}
+namespace CGBase_NS {			
+						
 							//===Distance between vertices===//
 	double
 		CGVertex2d::Distance(CGVertex2d* V2) {
@@ -69,11 +12,9 @@ namespace CGBase_NS {
 
 		return sqrt(dx * dx + dy * dy);
 	}
-
-
-
-							//===Vector composition insteed inheritence===//
-	
+							
+								// === CGVertex2d_V === //	
+						//===Vector composition insteed inheritence===//	
 
 	size_type_CGVertex2d_V CGVertex2d_V::size() const {
 		return adaptee.size();

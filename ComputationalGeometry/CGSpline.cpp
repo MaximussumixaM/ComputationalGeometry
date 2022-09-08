@@ -78,6 +78,19 @@ namespace CGBase_NS {
 
 	}
 
+	CGSpline2d::CGSpline2d(CGSpline2d&& other) noexcept  // move constructor
+	{
+		swap(*this, other);
+	}
+
+	CGSpline2d& CGSpline2d::operator=(CGSpline2d&& other) noexcept  // move operator
+	{
+		swap(*this, other);
+		return *this;
+	}
+
+	
+
 
 	
 }

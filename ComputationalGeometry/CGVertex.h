@@ -4,38 +4,112 @@
 #include "CGBase.h"
 
 namespace CGBase_NS {
+	//May use Zero-idiom(all constructors default)		
+	//Using copy-swap idiom
 
 								// === CGVertex2d === //
 	class CGVertex2d : CGBase
-	{   
-	private:
-		double x, y;                     // Vertex coordinates
-		double A, B;                     // Unit vectors components		
-		bool VectorDefined;				// is Vector defined on vertex
+	{  	
+	
 	public:
-							// === Constructors ===//
-		CGVertex2d();
+								// === Constructors ===//
+		CGVertex2d() :
+			x(0.0),
+			y(0.0),
+			A(1.0),
+			B(0.0),
+			VectorDefined(false)			
+		{
+			EntType = EntityType::VERTEX2D;
+		
+		};
+						//=== Create vertex by two coordinates===//
+		CGVertex2d(double xx, double yy) :
+			x(xx),
+			y(yy),
+			A(1.0),
+			B(0.0),
+			VectorDefined(false)
+		{
+			EntType = EntityType::VERTEX2D;
 
-		CGVertex2d(double, double);  // Create vertex by two coordinates
+		};
+			 
+				//=== Create vertex by two coordinates and unit vector components===//
 
-		CGVertex2d(double, double, double, double);   // Create vertex by two coordinates and unit vector components
-													
-		CGVertex2d(const CGVertex2d&); // Copy constructor
-
-		~CGVertex2d() = default;
-
-		CGVertex2d& operator=  (const CGVertex2d& v) {//Assignment operator	
-
-			if (this == &v) {
-				return *this;
+		CGVertex2d(double xx, double yy, double aa, double bb) :
+			x(xx),
+			y(yy),			
+			VectorDefined(true)
+		{
+			double s = sqrt(aa * aa + bb * bb);
+			if (s != 0.0) {
+				A = aa / s;
+				B = bb / s;
 			}
-			this->x = v.x; this->y = v.y;
-			this->A = v.A; this->B = v.B;
+			else
+			{
+				A = aa; B = bb;
+			}
+		
+			EntType = EntityType::VERTEX2D;
+
+		};
+		
+							//==Create vertex on v1 to v2 direction===//
+
+		CGVertex2d(const CGVertex2d& p1, const CGVertex2d& p2) :
+			x(p1.x),
+			y(p1.y),			
+			VectorDefined(false) {
+			
+			double a = p2.GetX() - p1.GetX();
+			double b = p2.GetY() - p1.GetY();
+			double s = sqrt(a * a + b * b);
+			if (s > CGUtilites::EPSmath)
+			{
+				A = a / s;
+				B = b / s;
+			}
+			else { A = a; B = b; }
+		
+		}
+													
+		CGVertex2d(const CGVertex2d& vv) :// Copy constructor
+			x(vv.x),
+			y(vv.y),
+			A(vv.A),
+			B(vv.B),
+			VectorDefined(vv.VectorDefined)
+		{}; 
+
+		CGVertex2d& operator=(CGVertex2d vv)
+		{
+			swap(*this, vv); 
 
 			return *this;
+		}		
+
+		CGVertex2d(CGVertex2d&& other) noexcept // Оператор присваивания перемещением (move assignment)
+			: CGVertex2d()
+		{
+			swap(*this, other);
 		}
 
-		CGVertex2d(CGVertex2d *  v1, CGVertex2d *  v2);//Create vertex on v1 to v2 direction
+		friend void swap(CGVertex2d& l, CGVertex2d& r)
+		{
+			using std::swap;
+
+			swap(l.x, r.x);
+			swap(l.y, r.y);
+			swap(l.A, r.A);
+			swap(l.B, r.B);			
+			swap(l.VectorDefined, r.VectorDefined);
+		}
+
+		~CGVertex2d() = default;
+							
+								// === Methods ===//
 	
 		void SetCoord(double, double, double);// Set coordinates
 		void SetCoord(const CGVertex2d*);// Set coordinates by another vertex
@@ -49,56 +123,50 @@ namespace CGBase_NS {
 		double  GetA() const { return A; };// Get A component
 		double  GetB() const { return B; };// Get B component
 
-		double Distance(CGVertex2d*);//distance between vertices	
+		double Distance(CGVertex2d*);//distance between vertices
+
+	private:
+		double x, y;                     // Vertex coordinates
+		double A, B;                     // Unit vectors components		
+		bool VectorDefined;				// is Vector defined on vertex
 	};	
 
 									// === CGVertex2d_V === //	
+
 	typedef std::vector<CGVertex2d>::value_type value_type_CGVertex2d_V;
 	typedef std::vector<CGVertex2d>::size_type  size_type_CGVertex2d_V;
 	typedef std::vector<CGVertex2d>::iterator  iterator_CGVertex2d_V;
 
-	class CGVertex2d_V { // Контейнер для хранения вертексов
-	
-	public:
-		CGVertex2d_V() = default;
-		CGVertex2d_V(const CGVertex2d_V& v_v) {	// Конструктор копирования
+//May use Zero-idiom(all constructors default)		
+//Using copy-swap idiom
+	class CGVertex2d_V { // Контейнер для хранения вертексов	
 
-			//if (v_v == nullptr || v_v->size() == 0)
-			//	return;
-			//
-			for (auto i = v_v.adaptee.begin(); i != v_v.adaptee.end(); i++) {
-				this->adaptee.push_back(*i);
-			}
-					
+	public:
+
+		CGVertex2d_V() = default;
+
+		CGVertex2d_V(const CGVertex2d_V& vv) {	// Конструктор копирования
+
+			std::copy(vv.adaptee.begin(), vv.adaptee.end(), std::back_inserter(adaptee));					
 
 		};	
 
-		CGVertex2d_V& operator=  (const CGVertex2d_V& v_v) {//Assignment operator	
+		CGVertex2d_V& operator=  (CGVertex2d_V vv) {//Assignment operator	
 
-			//for (auto i = v_v->begin(); i != v_v->end(); i++) {
-			//	this->push_back(*i);
-			//}
-			for (auto i = v_v.adaptee.begin(); i != v_v.adaptee.end(); i++) {
-				this->adaptee.push_back(*i);
-			}
+			swap(*this, vv);
+
 			return *this;
 		}
 
-		CGVertex2d_V(CGVertex2d_V&& other) noexcept // Оператор присваивания перемещением (move assignment)
+		CGVertex2d_V(CGVertex2d_V&& vv) noexcept //move constructor
+			: CGVertex2d_V()
 		{
-			swap(*this, other);
-		}
-
-		CGVertex2d_V& operator=(CGVertex2d_V&& other) noexcept // Оператор присваивания перемещением (move assignment)
-		{
-			swap(*this, other);
-			return *this;
-		}
+			swap(*this, vv);
+		}		
 
 		friend void swap(CGVertex2d_V& l, CGVertex2d_V& r)
 		{
-			using std::swap;
-			swap(l.adaptee, r.adaptee);
+			l.adaptee.swap(r.adaptee);
 		}
 
 		~CGVertex2d_V() {};
@@ -135,6 +203,7 @@ namespace CGBase_NS {
 
 	private:
 		std::vector<CGVertex2d> adaptee;//adapter
+	
 	};	
 }
 #endif //CGVERTEX_H

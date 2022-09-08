@@ -12,12 +12,40 @@ namespace CGBase_NS {
 		CGSpline2d();
 		CGSpline2d(const CGSpline2d&);		  // Copy constructor
 		CGSpline2d(CGCurve2d*);
-		~CGSpline2d() { 
-			//delete KnotVector;
-			//delete HordaVector;
-			//delete ControlPoints;
-			//delete FitPoints;		
-		} ;
+
+		CGSpline2d(CGSpline2d&& other) noexcept;
+
+		CGSpline2d& operator=(CGSpline2d&& other) noexcept;
+
+		friend void swap(CGSpline2d& l, CGSpline2d& r)
+		{
+			using std::swap;
+			swap(l.KnotVector, r.KnotVector);
+			swap(l.HordaVector, r.HordaVector);
+			swap(l.ControlPoints, r.ControlPoints);
+			swap(l.FitPoints, r.FitPoints);
+			swap(l.NormalVector, r.NormalVector);
+			swap(l.StartTangent, r.StartTangent);
+			swap(l.EndTangent, r.EndTangent);
+
+			//Standart structures may not swapping
+			swap(l.KnotTolerance, r.KnotTolerance);
+			swap(l.ControlPointTolerance, r.ControlPointTolerance);
+			swap(l.FitTolerance, r.FitTolerance);
+			swap(l.degree, r.degree);
+			swap(l.KnotsNum, r.KnotsNum);
+			swap(l.ControlPointNum, r.ControlPointNum);
+			swap(l.FitPointsNum, r.FitPointsNum);
+			swap(l.SplineFlag, r.SplineFlag);
+			swap(l.K, r.K);
+			swap(l.rational, r.rational);
+			swap(l.closed, r.closed);
+			swap(l.periodic, r.periodic);
+		
+
+		}
+
+		~CGSpline2d() {};
 
 		//Double_V* KnotVector;		
 		//Double_V* HordaVector;

@@ -3,6 +3,8 @@
 
 #include <string>
 #include <vector>
+#include<algorithm> // for copy() and assign() 
+#include<iterator> // for back_inserter 
 
 							  //=== Default accuracies ===//
 #define EPSgeo_default 0.10                    // geometry accuracy
@@ -23,52 +25,56 @@ namespace CGBase_NS {
     };	
 
 								// === Double_V === //	
-								
+//May use Zero-idiom(all constructors default)		
+//Using copy-swap idiom
 	typedef std::vector<double>::value_type value_type_double_v;
 	typedef std::vector<double>::size_type  size_type_double_v;
 	typedef std::vector<double>::iterator  iterator_double_v;
 
 	// Double List - for future math structures
-	class Double_V{
-	public:		
+	class Double_V {
+	public:
 
 		Double_V() = default;
 
 		Double_V(const Double_V& vv) {	// copy constructor
-			//if (vv == nullptr || vv->size() == 0)
-			//	return;
-			//почему не вз€ть итератор от const
-			//for (auto i = vv.begin(); i != vv.end(); i++) {
-			//	this->push_back(*i);
+
+			//for (auto i = vv.adaptee.begin(); i != vv.adaptee.end(); i++) {
+			//	this->adaptee.push_back(*i);
 			//}
-			for (auto i = vv.adaptee.begin(); i != vv.adaptee.end(); i++) {
-				this->adaptee.push_back(*i);
-			}
+			//std::copy(vv.adaptee.begin(), vv.adaptee.end(), adaptee);
+//https://www.geeksforgeeks.org/ways-copy-vector-c/			
+			std::copy(vv.adaptee.begin(), vv.adaptee.end(), std::back_inserter(adaptee));
 		};
-		
-		Double_V& operator=  (const Double_V& vv) {//Assignment operator	
 
-			for (auto i = vv.adaptee.begin(); i != vv.adaptee.end(); i++) {
-				this->adaptee.push_back(*i);
-			}
+		Double_V& operator=  (Double_V vv) {//Assignment operator	
+
+			//for (auto i = vv.adaptee.begin(); i != vv.adaptee.end(); i++) {
+			//	this->adaptee.push_back(*i);
+			//}
+			swap(*this, vv);
+
 			return *this;
 		};
 
-		Double_V(Double_V&& other) noexcept // ќператор присваивани€ перемещением (move assignment)
-		{
-			swap(*this, other);			
-		}
+		Double_V(Double_V&& vv) noexcept : // Move_Constructor
+			Double_V()
+		{			
+				swap(*this, vv);
+		};
 
-		Double_V& operator=(Double_V&& other) noexcept // ќператор присваивани€ перемещением (move assignment)
-		{
-			swap(*this, other);
-			return *this;
-		}
+			//Double_V& operator=(Double_V && other) noexcept { // move operator
+			//	swap(*this, other);
+			//	return *this;
+			//};
 
 		friend void swap(Double_V& l, Double_V& r)
 		{
-			using std::swap;
-			swap(l.adaptee, r.adaptee);
+			//using std::swap;
+			//swap(l.adaptee, r.adaptee);
+
+//https://www.geeksforgeeks.org/difference-between-stdswap-and-stdvectorswap/
+			l.adaptee.swap(r.adaptee);
 		}
 
 		~Double_V() = default;
@@ -114,5 +120,3 @@ namespace CGBase_NS {
 }
 
 #endif//CGUTILITES_H
-
-    

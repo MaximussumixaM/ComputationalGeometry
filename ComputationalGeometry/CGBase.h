@@ -18,9 +18,15 @@ namespace CGBase_NS {
 		
 		CGBase();
 		
-		CGBase(const CGBase& bg);//copy constructor
+		CGBase(const CGBase& bg) = default;//copy constructor
 
-		virtual ~CGBase() {};
+		CGBase(CGBase&&) = default;//
+
+		CGBase& operator=(const CGBase& bg) = default;//copy operator
+
+		CGBase& operator=(CGBase&&) = default;//move operator
+
+		virtual ~CGBase() = default;
 		
 		EntityType EntType;			
 	};

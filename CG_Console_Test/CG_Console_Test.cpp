@@ -20,10 +20,18 @@ int main()
 
     Double_V matrix = Double_V();
 
+    Double_V matrix_copy = Double_V();
+
     Double_V* matrix_new = new Double_V();
 
     matrix_new->push_back(5.9);
     matrix.push_back(5.9);
+    matrix.push_back(6.9);
+    matrix.push_back(7.9);
+
+    matrix_copy.push_back(1.0);
+
+    matrix_copy = matrix;
 
     double test_num = matrix[0];
 
@@ -36,7 +44,7 @@ int main()
 
 
                                 //===Other Test===//
-    CGVertex2d* v1 = new CGVertex2d(2, 4);
+   /* CGVertex2d* v1 = new CGVertex2d(2, 4);
     CGVertex2d* v2 = new CGVertex2d(3, 5);
 
     CGVertex2d_V* v_v = new CGVertex2d_V();
@@ -81,12 +89,12 @@ int main()
     CGVector2d EndTangent2 = spl_p->EndTangent;
 
    // spl1->
-    //spl1->EndTangent = CGVector2d(2, 3);
+   // spl1->EndTangent = CGVector2d(2, 3);
    // CGVertex2d_V ControlPoints = CGVertex2d_V(spl1->ControlPoints);
    // CGVector2d EndTangent = spl1->EndTangent;
 
     delete spl;
     //delete ControlPoints;
-    //delete v_v;
+    //delete v_v;*/
     return 0;
 }
