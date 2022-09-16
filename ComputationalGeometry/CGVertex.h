@@ -111,19 +111,28 @@ namespace CGBase_NS {
 							
 								// === Methods ===//
 	
-		void SetCoord(double, double, double);// Set coordinates
-		void SetCoord(const CGVertex2d*);// Set coordinates by another vertex
+		void SetCoord(double xx, double yy) { // Set coordinates
+
+			x = xx;
+			y = yy;
+		};
+		void SetCoord(const CGVertex2d& vv) {
+		
+			x = vv.x;
+			y = vv.y;
+
+		};// Set coordinates by another vertex
 		void SetX(double xx) { x = xx; };// Set x coordinate
 		void SetY(double yy) { y = yy; };// Set y coordinate
-		void SetA(double a) { A = a; }// Set A component
-		void SetB(double b) { B = b; }// Set B component	
+		void SetA(double aa) { A = aa; }// Set A component
+		void SetB(double bb) { B = bb; }// Set B component	
 
 		double  GetX() const { return x; };// Get x coordinate
 		double  GetY() const { return y; };// Get y coordinate		
 		double  GetA() const { return A; };// Get A component
 		double  GetB() const { return B; };// Get B component
 
-		double Distance(CGVertex2d*);//distance between vertices
+		double Distance(const CGVertex2d&);//distance between vertices
 
 	private:
 		double x, y;                     // Vertex coordinates
@@ -147,7 +156,7 @@ namespace CGBase_NS {
 
 		CGVertex2d_V(const CGVertex2d_V& vv) {	// Конструктор копирования
 
-			std::copy(vv.adaptee.begin(), vv.adaptee.end(), std::back_inserter(adaptee));					
+			std::copy(vv.values.begin(), vv.values.end(), std::back_inserter(values));					
 
 		};	
 
@@ -166,7 +175,7 @@ namespace CGBase_NS {
 
 		friend void swap(CGVertex2d_V& l, CGVertex2d_V& r)
 		{
-			l.adaptee.swap(r.adaptee);
+			l.values.swap(r.values);
 		}
 
 		~CGVertex2d_V() {};
@@ -202,7 +211,7 @@ namespace CGBase_NS {
 		CGVertex2d& operator[](size_type_CGVertex2d_V i);
 
 	private:
-		std::vector<CGVertex2d> adaptee;//adapter
+		std::vector<CGVertex2d> values;//adapter
 	
 	};	
 }

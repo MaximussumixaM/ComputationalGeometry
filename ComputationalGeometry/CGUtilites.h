@@ -39,18 +39,18 @@ namespace CGBase_NS {
 
 		Double_V(const Double_V& vv) {	// copy constructor
 
-			//for (auto i = vv.adaptee.begin(); i != vv.adaptee.end(); i++) {
-			//	this->adaptee.push_back(*i);
+			//for (auto i = vv.values.begin(); i != vv.values.end(); i++) {
+			//	this->values.push_back(*i);
 			//}
-			//std::copy(vv.adaptee.begin(), vv.adaptee.end(), adaptee);
+			//std::copy(vv.values.begin(), vv.values.end(), values);
 //https://www.geeksforgeeks.org/ways-copy-vector-c/			
-			std::copy(vv.adaptee.begin(), vv.adaptee.end(), std::back_inserter(adaptee));
+			std::copy(vv.values.begin(), vv.values.end(), std::back_inserter(values));
 		};
 
 		Double_V& operator=  (Double_V vv) {//Assignment operator	
 
-			//for (auto i = vv.adaptee.begin(); i != vv.adaptee.end(); i++) {
-			//	this->adaptee.push_back(*i);
+			//for (auto i = vv.values.begin(); i != vv.values.end(); i++) {
+			//	this->values.push_back(*i);
 			//}
 			swap(*this, vv);
 
@@ -71,10 +71,10 @@ namespace CGBase_NS {
 		friend void swap(Double_V& l, Double_V& r)
 		{
 			//using std::swap;
-			//swap(l.adaptee, r.adaptee);
+			//swap(l.values, r.values);
 
 //https://www.geeksforgeeks.org/difference-between-stdswap-and-stdvectorswap/
-			l.adaptee.swap(r.adaptee);
+			l.values.swap(r.values);
 		}
 
 		~Double_V() = default;
@@ -114,7 +114,7 @@ namespace CGBase_NS {
 		
 
 	private:
-		std::vector<double> adaptee;//adapter
+		std::vector<double> values;//adapter
 		
 	};
 }

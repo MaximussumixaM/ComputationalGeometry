@@ -2,13 +2,14 @@
 #include "CGVertex.h"
 #include <math.h>
 
-namespace CGBase_NS {			
+namespace CGBase_NS {		
+	
 						
 							//===Distance between vertices===//
 	double
-		CGVertex2d::Distance(CGVertex2d* V2) {
+		CGVertex2d::Distance(const CGVertex2d& vv) {
 
-		double dx(V2->GetX() - this->GetX()), dy(V2->GetY() - this->GetY());
+		double dx(vv.GetX() - this->GetX()), dy(vv.GetY() - this->GetY());
 
 		return sqrt(dx * dx + dy * dy);
 	}
@@ -17,66 +18,66 @@ namespace CGBase_NS {
 						//===Vector composition insteed inheritence===//	
 
 	size_type_CGVertex2d_V CGVertex2d_V::size() const {
-		return adaptee.size();
+		return values.size();
 	}
 
 	size_type_CGVertex2d_V CGVertex2d_V::capacity() const {
-		return adaptee.capacity();
+		return values.capacity();
 	}
 
 	iterator_CGVertex2d_V CGVertex2d_V::begin() {
-		return adaptee.begin();
+		return values.begin();
 	}
 
 	iterator_CGVertex2d_V CGVertex2d_V::end() {
-		return adaptee.end();
+		return values.end();
 	}
 
 	bool CGVertex2d_V::empty() const {
-		return adaptee.empty();
+		return values.empty();
 	}
 
 	const CGVertex2d& CGVertex2d_V::front() const {
-		return adaptee.front();
+		return values.front();
 	}
 
 	const CGVertex2d& CGVertex2d_V::back() const {
-		return adaptee.back();
+		return values.back();
 	}
 
 
 
 	void CGVertex2d_V::push_back(value_type_CGVertex2d_V const& value) {
-		adaptee.push_back(value);
+		values.push_back(value);
 	}
 
 	void CGVertex2d_V::pop_back() {
-		adaptee.pop_back();
+		values.pop_back();
 	}
 
 	void CGVertex2d_V::reserve(size_type_CGVertex2d_V capacity) {
-		adaptee.reserve(capacity);
+		values.reserve(capacity);
 	}
 
 	void CGVertex2d_V::resize(size_type_CGVertex2d_V size) {
 
-		adaptee.reserve(size);
+		values.reserve(size);
 	}
 
 	void CGVertex2d_V::clear() {
 
-		adaptee.clear();
+		values.clear();
 	}
 
 	CGVertex2d& CGVertex2d_V::at(size_type_CGVertex2d_V n) {
 
-		return adaptee.at(n);
+		return values.at(n);
 
 	}
 
 	CGVertex2d& CGVertex2d_V::operator[](size_type_CGVertex2d_V i) {
 
-		return adaptee[i];
+		return values[i];
 	}
 
 }

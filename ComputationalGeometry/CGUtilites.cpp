@@ -6,65 +6,65 @@ namespace CGBase_NS {
 	
 					//===Vector composition insteed inheritence===//
 	size_type_double_v Double_V::size() const {
-		return adaptee.size();
+		return values.size();
 	}
 
 	size_type_double_v Double_V::capacity() const {
-		return adaptee.capacity();
+		return values.capacity();
 	}
 
 	iterator_double_v Double_V::begin() {
-		return adaptee.begin();
+		return values.begin();
 	}
 
 	iterator_double_v Double_V::end()
 	{
-		return adaptee.end();
+		return values.end();
 	}
 
 	bool Double_V::empty() const {
-		return adaptee.empty();
+		return values.empty();
 	}
 
 	const double& Double_V::front() const {
-		return adaptee.front();
+		return values.front();
 	}
 
 	const double& Double_V::back() const {
-		return adaptee.back();
+		return values.back();
 	}
 
 	void Double_V::push_back(value_type_double_v const& value) {
-		adaptee.push_back(value);
+		values.push_back(value);
 	}
 
 	void Double_V::pop_back() {
-		adaptee.pop_back();
+		values.pop_back();
 	}
 
 	void Double_V::reserve(size_type_double_v capacity) {
-		adaptee.reserve(capacity);
+		values.reserve(capacity);
 	}
 
 	void Double_V::resize(size_type_double_v size) {
 
-		adaptee.reserve(size);
+		values.reserve(size);
 	}
 
 	void Double_V::clear() {
 
-		adaptee.clear();
+		values.clear();
 	}
 
 	double& Double_V::at(size_type_double_v n) {
 
-		return adaptee.at(n);
+		return values.at(n);
 
 	}
 
 	double &Double_V::operator[](size_type_double_v i) {
 
-		return adaptee[i];
+		return values[i];
 	}
 	
 }
